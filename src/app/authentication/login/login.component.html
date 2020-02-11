@@ -1,1 +1,21 @@
-<p>login works!</p>
+<h1>Login</h1>
+<form (ngSubmit)="LogIn()">
+  <div>
+    <label for="email">Email</label>
+    <input type="text" [(ngModel)]="credentials.email" name="email" required />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" [(ngModel)]="credentials.password" name="password" required />
+  </div>
+  <div>
+    <label for="remember">Remember me</label>
+    <input type="checkbox" [(ngModel)]="rememberMe" name="remember" />
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+  <div class="error">
+    {{error}}
+  </div>
+</form>

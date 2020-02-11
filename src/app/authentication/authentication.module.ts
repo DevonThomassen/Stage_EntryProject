@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { AuthenticationComponent } from './authentication.component';
@@ -10,7 +11,8 @@ import { LoginComponent } from './login/login.component';
   declarations: [AuthenticationComponent, LoginComponent],
   imports: [
     CommonModule,
-    AuthenticationRoutingModule
+    FormsModule,
+    AuthenticationRoutingModule,
   ]
 })
 export class AuthenticationModule { }
