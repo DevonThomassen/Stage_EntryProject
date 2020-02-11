@@ -4,7 +4,8 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse
+  HttpResponse,
+  HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -19,7 +20,11 @@ export class BaseInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
 
     const req = request.clone({
-      url: `https://testapi.jarpiscloud.nl/api/v1/${request.url}`
+      url: `https://testapi.jarpiscloud.nl/api/v1/${request.url}`,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Jemoeder'
+      })
     });
 
 
