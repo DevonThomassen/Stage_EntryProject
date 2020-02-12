@@ -6,21 +6,22 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private auth: AuthenticationService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    if (!localStorage.getItem('token')) {
+    if (!this.auth.token) {
       console.log('Nope');
       return next.handle(request);
     }
     console.log('Yep');
     const req = request.clone({
-      headers: request.headers.set('Authorization', `Basic ${localStorage.getItem('token')}`)
+      headers: request.headers.set('Authorization', `Basic ${this.auth.token}`)
     });
 
     return next.handle(req);
