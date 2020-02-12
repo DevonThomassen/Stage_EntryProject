@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +10,19 @@ import { LoginService } from './login.service';
 export class LoginComponent implements OnInit {
 
   public credentials = {
-    email: 'Placeholder1',
-    password: 'Placeholder2'
+    email: 'admin',
+    password: 'admin'
   };
 
   public rememberMe = false;
   public error: string;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private auth: AuthenticationService /*, private router: Router*/) { }
 
   ngOnInit(): void {
   }
 
   LogIn() {
-    this.loginService.LogIn(this.credentials)
-    .subscribe( data => console.log(data));
+    this.auth.LogIn(this.credentials);
   }
 }
