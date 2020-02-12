@@ -4,10 +4,11 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorHandelerInterceptor implements HttpInterceptor {
@@ -16,10 +17,21 @@ export class ErrorHandelerInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      retry(2),
+      map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          console.log('Event-->>', event);
+        }
+        return event;
+      }),
       catchError((error: HttpErrorResponse) => {
-        if (error.status !== 401) {
-          // Bruh
+        let data = {};
+        data = {
+          reason: error && error.error.reason ? error.error.reason : '',
+          status: error.status
+        };
+        if (error.status === 401){
+          // TODO: LogOut
+          console.log('Logout function')
         }
         return throwError(error);
       })

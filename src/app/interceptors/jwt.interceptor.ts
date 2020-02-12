@@ -10,9 +10,19 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+
+    if (!localStorage.getItem('token')) {
+      console.log('Nope');
+      return next.handle(request);
+    }
+    console.log('Yep');
+    const req = request.clone({
+      headers: request.headers.set('Authorization', `Basic ${localStorage.getItem('token')}`)
+    });
+
+    return next.handle(req);
   }
 }

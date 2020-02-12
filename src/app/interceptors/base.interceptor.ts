@@ -23,7 +23,7 @@ export class BaseInterceptor implements HttpInterceptor {
       url: `https://testapi.jarpiscloud.nl/api/v1/${request.url}`,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'Jemoeder'
+        'Access-Control-Allow-Origin': '*'
       })
     });
 
