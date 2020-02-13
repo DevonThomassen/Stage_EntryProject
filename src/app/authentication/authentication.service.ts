@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { User } from '../interface/User';
 import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,18 +21,13 @@ export class AuthenticationService {
   }
 
   public LogIn(credentials: { email: string, password: string }) {
-
-    const token = this.http.post('/auth/login', credentials).subscribe(
-      (data: { token: string }) => { this.token = data.token; console.log(this.token); },
-      (err) => console.error(err),
-      () => {
-        console.log('Done');
+    return this.http.post('/auth/login', credentials).pipe(
+      tap((data: { token: string }) => {
+        this.token = data.token;
         this.currentUser.next(this.helper.decodeToken(this.token));
-        console.log(this.currentUser);
-      }
+        console.log([this.token, this.currentUser]);
+      })
     );
-
-    return token;
   }
 
   public LoggedIn() {

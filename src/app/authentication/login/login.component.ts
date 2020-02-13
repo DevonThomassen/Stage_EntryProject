@@ -9,8 +9,8 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginComponent implements OnInit {
 
   public credentials = {
-    email: 'admin',
-    password: 'admin'
+    email: 'cjinkinson1@state.gov',
+    password: 'pNPB5YwdR'
   };
 
   public rememberMe = false;
@@ -22,6 +22,6 @@ export class LoginComponent implements OnInit {
   }
 
   LogIn() {
-    this.auth.LogIn(this.credentials);
+    this.auth.LogIn(this.credentials).subscribe();
   }
 }
