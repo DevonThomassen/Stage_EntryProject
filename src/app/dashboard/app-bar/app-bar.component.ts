@@ -6,7 +6,7 @@ import { User } from 'src/app/interface/User';
 @Component({
   selector: 'app-app-bar',
   templateUrl: './app-bar.component.html',
-  styleUrls: ['./app-bar.component.css']
+  styleUrls: ['./app-bar.component.scss']
 })
 export class AppBarComponent implements OnInit {
 
