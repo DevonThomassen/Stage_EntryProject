@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/interface/User';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-users',
@@ -14,14 +14,13 @@ export class UsersComponent implements OnInit {
   users: Observable<User[]>;
   totalUsers: number;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private router: Router, private usersService: UsersService) { }
 
   ngOnInit(): void {
-    const totalUsers = this.http.get('/users?offset=0&limit=104');
-    totalUsers.subscribe((data: { data: User[], total: number }) => {
-      this.totalUsers = data.total;
-      this.users = of(data.data);
-      console.log(data.data);
+    this.usersService.getUsers().subscribe(res => {
+      this.users = of(res.data);
+      this.totalUsers = res.total;
+      console.log(res.data);
     });
   }
 
