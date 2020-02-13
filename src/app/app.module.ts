@@ -20,7 +20,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => { return localStorage.getItem('token') },
+        tokenGetter: () => '',
         whitelistedDomains: ['testapi.jarpiscloud.nl']
       }
     })
