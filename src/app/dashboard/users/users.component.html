@@ -1,1 +1,9 @@
 <p>users works!</p>
+<div class="grid">
+  <div *ngFor="let user of users | async" (click)="onSelect(user)">
+    <p>{{user.firstName}}</p>
+    <p>{{user.lastName}}</p>
+    <img src='{{user.avatar}}' />
+  </div>
+</div>
+
