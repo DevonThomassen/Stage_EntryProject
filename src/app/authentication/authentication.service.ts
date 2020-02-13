@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthenticationService {
 
   token: string;
-  currentUser: BehaviorSubject<User>;
+  currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, private helper: JwtHelperService) { }
 
@@ -26,7 +26,7 @@ export class AuthenticationService {
       (err) => console.error(err),
       () => {
         console.log('Done');
-        this.currentUser = this.helper.decodeToken(this.token);
+        this.currentUser.next(this.helper.decodeToken(this.token));
         console.log(this.currentUser);
       }
     );
