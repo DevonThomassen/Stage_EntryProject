@@ -12,11 +12,11 @@ export class AuthenticationGuard implements CanActivate {
   constructor(public authentication: AuthenticationService, public router: Router) { }
 
   canActivate() {
-    if (!this.authentication) {
-      this.router.navigate(['dashboard']);
-      return false;
+    if (this.authentication.LoggedIn()) {
+      return true;
     }
-    return true;
+    this.router.navigate(['/auth']);
+    return false;
   }
 
 }

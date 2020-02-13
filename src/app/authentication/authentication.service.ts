@@ -27,10 +27,16 @@ export class AuthenticationService {
       () => {
         console.log('Done');
         this.currentUser = this.helper.decodeToken(this.token);
+        console.log(this.currentUser);
       }
     );
 
     return token;
+  }
+
+  public LoggedIn() {
+    console.log(!!this.token);
+    return !!this.token;
   }
 
 }
