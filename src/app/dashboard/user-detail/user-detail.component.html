@@ -1,1 +1,13 @@
 <p>user-detail works!</p>
+
+{{ user.id }}
+{{ user.email }}
+{{ user.password }}
+{{ user.firstName }}
+{{ user.lastName }}
+<img src='{{user.avatar}}' />
+{{ user.created_at }}
+{{ user.updated_at }}
+
+<button (click)="editUser">Edit</button>
+<button (click)="deleteUser">Delete</button>

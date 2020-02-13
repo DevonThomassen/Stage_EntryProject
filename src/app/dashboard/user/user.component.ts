@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interface/User';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { UsersService } from './users.service';
+import { UserService } from './user.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   users: Observable<User[]>;
   totalUsers: number;
 
-  constructor(private router: Router, private usersService: UsersService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.usersService.getUsers().subscribe(res => {
+    this.userService.getUsers().subscribe(res => {
       this.users = of(res.data);
       this.totalUsers = res.total;
       console.log(res.data);

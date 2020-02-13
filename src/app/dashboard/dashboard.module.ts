@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { AppBarComponent } from './app-bar/app-bar.component';
-import { UsersComponent } from './users/users.component';
+import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, AppBarComponent, UsersComponent, UserDetailComponent],
+  declarations: [DashboardComponent, AppBarComponent, UserComponent, UserDetailComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule
