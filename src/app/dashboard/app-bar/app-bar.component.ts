@@ -15,7 +15,7 @@ export class AppBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe(user => { this.user = user; });
-    console.log(this.user);
+    console.log(['user: ', this.user]);
   }
 
 }

@@ -12,11 +12,11 @@ export class DashboardComponent implements OnInit {
 
   user: User;
 
-  constructor(private http: HttpClient, private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.auth.currentUser.subscribe(user => { this.user = user; });
-    console.log(this.user);
+    this.auth.currentUser.subscribe((user: User) => { this.user = user; });
+    console.log(['user: ', this.user]);
   }
 
   Get() {
