@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interface/User';
 import { Observable, of, throwError } from 'rxjs';
+import { User } from 'src/app/interface/User';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
 
@@ -11,24 +11,16 @@ import { UserService } from './user.service';
 })
 export class UserComponent implements OnInit {
 
-  users: Observable<User[]>;
-  totalUsers: number;
+  public users: Observable<User[]>;
+  private totalUsers: number;
 
-  offset = 0;
-  limit = 200;
+  public offset = 0;
+  public limit = 200;
+
 
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUsers(this.offset, this.limit);
-  }
-
-  onSelect(user: User) {
-    this.router.navigate([`dashboard/user/detail/${user.id}`]);
-    console.log(['user id', user.id]);
-  }
-
-  getParams() {
     this.getUsers(this.offset, this.limit);
   }
 
@@ -38,9 +30,19 @@ export class UserComponent implements OnInit {
       this.totalUsers = res.total;
       console.log(['res data', res.data]);
     },
-    err => {
-      throwError(err);
-    });
+      err => {
+        throwError(err);
+      });
+
+  }
+
+  onSelect(user: User) {
+    this.router.navigate([`dashboard/user/detail/${user.id}`]);
+  }
+
+
+  getParams() {
+
   }
 
   addUser() {

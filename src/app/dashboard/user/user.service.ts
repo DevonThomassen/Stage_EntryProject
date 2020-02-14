@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { User } from 'src/app/interface/User';
+import { User } from '../../interface/User';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUserById(id: number) {
-    return this.http.get(`/users/${id}`).pipe(
-      tap((data: User) => console.log(data))
-    );
-  }
-
-  getUsers(offset: number, limit: number) {
+  getUsers(offset: number, limit: number): Observable<{ data: User[], total: number }> {
     return this.http.get(`/users?offset=${offset}&limit=${limit}`).pipe(
       tap((data: { data: User[], total: number }) => {
         console.log(['data', data]);
@@ -25,12 +19,14 @@ export class UserService {
     );
   }
 
-  editUser() {
+
+  getUser() {
 
   }
 
-  deleteUser() {
-
+  getUserById(id: number): Observable<User> {
+    return this.http.get(`/users/${id}`).pipe(
+      tap((data: User) => console.log(data))
+    );
   }
-
 }

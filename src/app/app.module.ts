@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BaseInterceptor } from './interceptors/base.interceptor';
 import { ErrorHandelerInterceptor } from './interceptors/error-handeler.interceptor';
+import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { BarComponent } from './bar/bar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BarComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
         tokenGetter: () => '',
         whitelistedDomains: ['testapi.jarpiscloud.nl']
       }
-    })
+    }),
+    AuthModule,
+    DashboardModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },

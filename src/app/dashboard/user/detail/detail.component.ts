@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/interface/User';
-import { UserService } from '../user/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss']
 })
-export class UserDetailComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
   user: User = {
     id: 0,

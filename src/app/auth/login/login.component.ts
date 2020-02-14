@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,14 @@ export class LoginComponent implements OnInit {
   public rememberMe = false;
   public error: string;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   LogIn() {
     this.auth.LogIn(this.credentials).subscribe();
+    this.router.navigate(['/dashboard']);
   }
+
 }

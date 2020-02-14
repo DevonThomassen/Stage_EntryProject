@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { User } from '../interface/User';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthService {
 
   token: string;
-  currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
+  currentUser: BehaviorSubject<User> = new BehaviorSubject({
+    id: 0,
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    avatar: '',
+    created_at: '',
+    updated_at: ''
+  });
 
   constructor(private http: HttpClient, private helper: JwtHelperService) { }
 
