@@ -31,7 +31,7 @@ export class ErrorHandelerInterceptor implements HttpInterceptor {
         };
         if (error.status === 401){
           // TODO: LogOut
-          console.log('Logout function')
+          console.log('Logout function');
         }
         return throwError(error);
       })
