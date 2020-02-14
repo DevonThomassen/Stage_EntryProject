@@ -1,5 +1,8 @@
 <p>user works!</p>
+<button (click)="addUser()">Add user</button>
+<label>Offset </label>
 <input type="text" [(ngModel)]="offset" required />
+<label>Limit </label>
 <input type="text" [(ngModel)]="limit" required />
 <button (click)="getParams()">Get params</button>
 <div class="grid">

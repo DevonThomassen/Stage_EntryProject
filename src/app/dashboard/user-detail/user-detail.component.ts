@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/interface/User';
 import { UserService } from '../user/user.service';
 
@@ -11,7 +10,16 @@ import { UserService } from '../user/user.service';
 })
 export class UserDetailComponent implements OnInit {
 
-  user: User;
+  user: User = {
+    id: 0,
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    avatar: '',
+    created_at: '',
+    updated_at: ''
+  };
 
   constructor(private route: ActivatedRoute, private userService: UserService) { }
 

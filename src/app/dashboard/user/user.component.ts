@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   totalUsers: number;
 
   offset = 0;
-  limit = 0;
+  limit = 200;
 
   constructor(private router: Router, private userService: UserService) { }
 
@@ -41,6 +41,10 @@ export class UserComponent implements OnInit {
     err => {
       throwError(err);
     });
+  }
+
+  addUser() {
+
   }
 
 }

@@ -1,36 +1,38 @@
-<p>user-detail works!</p>
+<div>
+  <p>user-detail works!</p>
 
-<button [routerLink]="['/dashboard']">Back</button>
+  <button [routerLink]="['/dashboard']">Back</button>
 
-<div>
-  <p>ID:</p>
-  <p>{{ user.id }}</p>
+  <button (click)="editUser()">Edit</button>
+  <button (click)="deleteUser()">Delete</button>
+  
+  <div>
+    <p>ID:</p>
+    <p>{{ user.id }}</p>
+  </div>
+  <img src='{{user.avatar}}' />
+  <div>
+    <p>E-mail: </p>
+    <p>{{ user.email }}</p>
+  </div>
+  <div>
+    <p>Password: </p>
+    <p>{{ user.password }}</p>
+  </div>
+  <div>
+    <p>Firstname</p>
+    <p>{{ user.firstName }}</p>
+  </div>
+  <div>
+    <p>Lastname: </p>
+    <p>{{ user.lastName }}</p>
+  </div>
+  <div>
+    <p>User created at: </p>
+    <p>{{ user.created_at }}</p>
+  </div>
+  <div>
+    <p>User updated at:</p>
+    <p>{{ user.updated_at }}</p>
+  </div>
 </div>
-<img src='{{user.avatar}}' />
-<div>
-  <p>E-mail: </p>
-  <p>{{ user.email }}</p>
-</div>
-<div>
-  <p>Password: </p>
-  <p>{{ user.password }}</p>
-</div>
-<div>
-  <p>Firstname</p>
-  <p>{{ user.firstName }}</p>
-</div>
-<div>
-  <p>Lastname: </p>
-  <p>{{ user.lastName }}</p>
-</div>
-<div>
-  <p>User created at: </p>
-  <p>{{ user.created_at }}</p>
-</div>
-<div>
-  <p>User updated at:</p>
-  <p>{{ user.updated_at }}</p>
-</div>
-
-<button (click)="editUser">Edit</button>
-<button (click)="deleteUser">Delete</button>
