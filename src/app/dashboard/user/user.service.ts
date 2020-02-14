@@ -17,8 +17,8 @@ export class UserService {
     );
   }
 
-  getUsers() {
-    return this.http.get('/users?offset=0&limit=104').pipe(
+  getUsers(offset: number, limit: number) {
+    return this.http.get(`/users?offset=${offset}&limit=${limit}`).pipe(
       tap((data: { data: User[], total: number }) => {
         console.log(['data', data]);
       })

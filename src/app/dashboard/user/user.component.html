@@ -1,4 +1,7 @@
 <p>user works!</p>
+<input type="text" [(ngModel)]="offset" required />
+<input type="text" [(ngModel)]="limit" required />
+<button (click)="getParams()">Get params</button>
 <div class="grid">
   <div *ngFor="let user of users | async" (click)="onSelect(user)">
     <p>{{user.firstName}}</p>
