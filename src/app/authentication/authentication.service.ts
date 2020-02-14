@@ -31,7 +31,6 @@ export class AuthenticationService {
   }
 
   public LoggedIn() {
-    console.log(!!this.token);
     return !!this.token;
   }
 
