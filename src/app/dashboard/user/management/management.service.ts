@@ -12,4 +12,8 @@ export class ManagementService {
   AddUser(user: AddUser) {
     return this.http.post('/users', user).pipe();
   }
+
+  EditUser(user: UpdateUser) {
+
+  }
 }
