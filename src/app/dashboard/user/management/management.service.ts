@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AddUser } from 'src/app/interface/AddUser';
+import { UpdateUser } from 'src/app/interface/UpdateUser';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,9 @@ export class ManagementService {
 
   EditUser(user: UpdateUser) {
 
+  }
+
+  DeleteUser(id: number) {
+    return this.http.delete(`/users/${id}`);
   }
 }

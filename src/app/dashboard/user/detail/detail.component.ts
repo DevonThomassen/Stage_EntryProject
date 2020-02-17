@@ -43,7 +43,8 @@ export class DetailComponent implements OnInit {
   }
 
   deleteUser() {
-
+    this.managementService.DeleteUser(this.user.id).subscribe();
+    this.router.navigate(['/dashboard']);
   }
 
 }
