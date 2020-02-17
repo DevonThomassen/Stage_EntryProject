@@ -5,11 +5,11 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { FormsModule } from '@angular/forms';
 import { DetailComponent } from './detail/detail.component';
-import { ManagementComponent } from './management/management.component';
+import { AddComponent } from './add/add.component';
 
 
 @NgModule({
-  declarations: [UserComponent, DetailComponent, ManagementComponent],
+  declarations: [UserComponent, DetailComponent, AddComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
