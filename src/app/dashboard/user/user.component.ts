@@ -42,7 +42,7 @@ export class UserComponent implements OnInit {
 
 
   getParams() {
-
+    this.getUsers(this.offset, this.limit);
   }
 
   addUser() {
