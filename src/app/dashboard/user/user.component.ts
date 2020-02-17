@@ -25,7 +25,6 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
-
     this.userService.getUsers(this.offset, this.limit).subscribe(
       res => {
         this.users = of(res.data);
@@ -35,20 +34,18 @@ export class UserComponent implements OnInit {
       err => {
         throwError(err);
       });
+  }
 
+  getParams() {
+    this.getUsers();
   }
 
   onSelect(user: User) {
     this.router.navigate([`dashboard/user/detail/${user.id}`]);
   }
 
-
-  getParams() {
-    this.getUsers();
-  }
-
   addUser() {
-    this.router.navigate(['dashboard/user/management/add']);
+    this.router.navigate(['dashboard/user/add']);
   }
 
 }
