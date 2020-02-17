@@ -21,15 +21,17 @@ export class UserComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getUsers(this.offset, this.limit);
+    this.getUsers();
   }
 
-  getUsers(offset: number, limit: number) {
-    this.userService.getUsers(this.offset, this.limit).subscribe(res => {
-      this.users = of(res.data);
-      this.totalUsers = res.total;
-      console.log(['res data', res.data]);
-    },
+  getUsers() {
+
+    this.userService.getUsers(this.offset, this.limit).subscribe(
+      res => {
+        this.users = of(res.data);
+        this.totalUsers = res.total;
+        console.log(['res data', res.data]);
+      },
       err => {
         throwError(err);
       });
@@ -42,11 +44,11 @@ export class UserComponent implements OnInit {
 
 
   getParams() {
-    this.getUsers(this.offset, this.limit);
+    this.getUsers();
   }
 
   addUser() {
-
+    this.router.navigate(['dashboard/user/management/add']);
   }
 
 }
