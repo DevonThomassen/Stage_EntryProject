@@ -3,6 +3,7 @@ import { User } from 'src/app/interface/User';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { Location } from '@angular/common';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-detail',
@@ -52,7 +53,7 @@ export class DetailComponent implements OnInit {
 
   deleteUser() {
     // TODO: Confirm dialog
-    this.userService.DeleteUser(this.user.id).subscribe();
+    this.userService.DeleteUser(this.user.id).subscribe(err => { throwError(err)});
     this.router.navigate(['/dashboard']);
   }
 
