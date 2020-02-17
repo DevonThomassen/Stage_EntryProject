@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../../interface/User';
-import { HttpClient } from '@angular/common/http';
+import { AddUser } from 'src/app/interface/AddUser';
+import { UpdateUser } from 'src/app/interface/UpdateUser';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +21,21 @@ export class UserService {
     );
   }
 
-
-  getUser() {
-
-  }
-
   getUserById(id: number): Observable<User> {
     return this.http.get(`/users/${id}`).pipe(
       tap((data: User) => console.log(data))
     );
+  }
+
+  AddUser(user: AddUser) {
+    return this.http.post('/users', user).pipe();
+  }
+
+  EditUser(user: UpdateUser) {
+    return this.http.put(`/users/${user.id}`, user);
+  }
+
+  DeleteUser(id: number) {
+    return this.http.delete(`/users/${id}`);
   }
 }

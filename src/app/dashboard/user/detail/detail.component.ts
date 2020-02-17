@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interface/User';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { ManagementService } from '../management/management.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail',
@@ -22,11 +22,13 @@ export class DetailComponent implements OnInit {
     updated_at: ''
   };
 
+  edit: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
-    private managementService: ManagementService) { }
+    private location: Location,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -38,12 +40,19 @@ export class DetailComponent implements OnInit {
     this.userService.getUserById(id).subscribe(res => this.user = res);
   }
 
+  enableEdit() {
+    // TODO: Confirm dialog
+    this.edit = !this.edit;
+    this.location.go(`dashboard/user/edit/${this.user.id}`);
+  }
+
   editUser() {
-    // this.router.navigate(['dashboard/management/edit']);
+    this.userService.EditUser(this.user).subscribe();
   }
 
   deleteUser() {
-    this.managementService.DeleteUser(this.user.id).subscribe();
+    // TODO: Confirm dialog
+    this.userService.DeleteUser(this.user.id).subscribe();
     this.router.navigate(['/dashboard']);
   }
 

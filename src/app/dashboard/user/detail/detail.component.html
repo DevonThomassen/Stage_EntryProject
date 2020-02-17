@@ -3,29 +3,57 @@
 
   <button [routerLink]="['/dashboard']">Back</button>
 
-  <button (click)="editUser()">Edit</button>
+  <button (click)="enableEdit()">Edit</button>
   <button (click)="deleteUser()">Delete</button>
-  
-  <div>
-    <p>ID:</p>
-    <p>{{ user.id }}</p>
-  </div>
-  <img src='{{user.avatar}}' />
-  <div>
-    <p>E-mail: </p>
-    <p>{{ user.email }}</p>
-  </div>
-  <div>
-    <p>Password: </p>
-    <p>{{ user.password }}</p>
-  </div>
-  <div>
-    <p>Firstname</p>
-    <p>{{ user.firstName }}</p>
-  </div>
-  <div>
-    <p>Lastname: </p>
-    <p>{{ user.lastName }}</p>
+
+  <div [ngSwitch]="edit">
+    <div *ngSwitchCase="true">
+      <button (click)="editUser()">Save</button>
+      <div>
+        <p>ID:</p>
+        <p>{{ user.id }}</p>
+      </div>
+      <img src='{{user.avatar}}' />
+      <div>
+        <p>E-mail:</p>
+        <input type="text" [(ngModel)]="user.email">
+      </div>
+      <div>
+        <p>Password:</p>
+        <input type="text" [(ngModel)]="user.password">
+      </div>
+      <div>
+        <p>Firstname</p>
+        <input type="text" [(ngModel)]="user.firstName">
+      </div>
+      <div>
+        <p>LastName</p>
+        <input type="text" [(ngModel)]="user.lastName">
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      <div>
+        <p>ID:</p>
+        <p>{{ user.id }}</p>
+      </div>
+      <img src='{{user.avatar}}' />
+      <div>
+        <p>E-mail: </p>
+        <p>{{ user.email }}</p>
+      </div>
+      <div>
+        <p>Password: </p>
+        <p>{{ user.password }}</p>
+      </div>
+      <div>
+        <p>Firstname</p>
+        <p>{{ user.firstName }}</p>
+      </div>
+      <div>
+        <p>Lastname: </p>
+        <p>{{ user.lastName }}</p>
+      </div>
+    </div>
   </div>
   <div>
     <p>User created at: </p>
