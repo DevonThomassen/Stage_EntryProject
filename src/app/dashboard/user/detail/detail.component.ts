@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interface/User';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { ManagementService } from '../management/management.service';
 
 @Component({
   selector: 'app-detail',
@@ -21,7 +22,11 @@ export class DetailComponent implements OnInit {
     updated_at: ''
   };
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private managementService: ManagementService) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -34,7 +39,7 @@ export class DetailComponent implements OnInit {
   }
 
   editUser() {
-
+    // this.router.navigate(['dashboard/management/edit']);
   }
 
   deleteUser() {
