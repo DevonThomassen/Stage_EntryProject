@@ -11,8 +11,8 @@ import { Credential } from './../../interface/Credential';
 export class LoginComponent implements OnInit {
 
   public credentials: Credential = {
-    email: 'cjinkinson1@state.gov',
-    password: 'pNPB5YwdR'
+    email: 'admin',
+    password: 'admin'
   };
 
   public rememberMe = false;
