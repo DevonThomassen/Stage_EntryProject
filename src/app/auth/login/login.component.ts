@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   LogIn() {
-    this.auth.LogIn(this.credentials).subscribe();
-    this.router.navigate(['/dashboard']);
+    this.auth.LogIn(this.credentials).subscribe(
+      () => this.router.navigate(['/dashboard'])
+    );
   }
 
 }
