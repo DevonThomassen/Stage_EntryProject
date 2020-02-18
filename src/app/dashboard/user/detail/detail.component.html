@@ -1,6 +1,4 @@
 <div>
-  <p>detail works!</p>
-
   <button [routerLink]="['/dashboard']">Back</button>
 
   <button (click)="enableEdit()">Edit</button>
@@ -31,6 +29,7 @@
         <input type="text" [(ngModel)]="user.lastName">
       </div>
     </div>
+    
     <div *ngSwitchDefault>
       <div>
         <p>ID:</p>

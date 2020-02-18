@@ -1,10 +1,36 @@
-form {
-  div {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    width: 300px;
+@import '../../../global.scss';
+
+:host {
+  display: flex;
+  box-sizing: border-box;
+  background-color: #00b894;
+  justify-content: center;
+  flex-direction: column;
+
+  h1 {
+    margin: 0;
+    padding: 0;
   }
-  .error {
-    color: red;
+
+  form {
+    div {
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 300px;
+    }
+
+    button {
+      @extend %button;
+      margin: 20px;
+      padding: 20px;
+      border: #636e72 2px solid;
+    }
+
+    .error {
+      flex-grow: 1;
+      flex-basis: 0;
+      color: red;
+    }
   }
 }

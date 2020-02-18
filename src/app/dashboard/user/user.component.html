@@ -1,14 +1,21 @@
-<p>user works!</p>
-<button (click)="addUser()">Add user</button>
-<label>Offset </label>
-<input type="text" [(ngModel)]="offset" required />
-<label>Limit </label>
-<input type="text" [(ngModel)]="limit" required />
-<button (click)="getParams()">Get params</button>
+<div class="col">
+  <div class="params">
+    <div>
+      <label>Offset </label>
+      <input type="text" [(ngModel)]="offset" required />
+      <div>
+      </div>
+      <label>Limit </label>
+      <input type="text" [(ngModel)]="limit" required />
+    </div>
+    <button (click)="getParams()">Execute</button>
+  </div>
+  <button (click)="addUser()">Add user</button>
+</div>
+
 <div class="grid">
   <div *ngFor="let user of users | async" (click)="onSelect(user)">
-    <p>{{user.firstName}}</p>
-    <p>{{user.lastName}}</p>
+    <p>{{user.firstName}} {{user.lastName}}</p>
     <img src='{{user.avatar}}' />
   </div>
 </div>
