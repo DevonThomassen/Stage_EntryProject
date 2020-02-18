@@ -11,14 +11,14 @@ import { User } from '../interface/User';
 })
 export class AuthService {
 
-  token: string;
-  currentUser: BehaviorSubject<User> = new BehaviorSubject({
+  public token: string;
+  public currentUser: BehaviorSubject<User> = new BehaviorSubject({
     id: 0,
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
-    avatar: '',
+    firstName: 'Start',
+    lastName: 'Name',
+    avatar: 'https://robohash.org/consecteturmagniid.jpg?size=100x100&set=set1',
     created_at: '',
     updated_at: ''
   });
