@@ -12,7 +12,7 @@ import { throwError } from 'rxjs';
 })
 export class DetailComponent implements OnInit {
 
-  user: User = {
+  public user: User = {
     id: 0,
     email: '',
     password: '',
@@ -23,7 +23,7 @@ export class DetailComponent implements OnInit {
     updated_at: ''
   };
 
-  edit: boolean = false;
+  public edit: boolean = false;
 
   constructor(
     private route: ActivatedRoute,

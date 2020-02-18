@@ -25,6 +25,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private helper: JwtHelperService) { }
 
+  public getToken() {
+    return this.currentUser;
+  }
+
   public isAuthenticated(): boolean {
     return !this.helper.isTokenExpired(this.token);
   }
@@ -39,7 +43,7 @@ export class AuthService {
     );
   }
 
-  public LoggedIn() {
+  public loggedIn() {
     return !!this.token;
   }
 

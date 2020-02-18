@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
+import { LoggedInGuard } from './auth/logged-in.guard';
+import { LoggedOutGuard } from './auth/logged-out.guard';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
-  { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] }
+  { path: 'auth', loadChildren: './auth/auth.module#AuthModule', canActivate: [LoggedOutGuard] },
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [LoggedInGuard] }
 ];
 
 @NgModule({
