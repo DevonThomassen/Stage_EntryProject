@@ -12,7 +12,7 @@ import { User } from '../interface/User';
 export class AuthService {
 
   public token: string;
-  public currentUser: BehaviorSubject<User> = new BehaviorSubject({
+  private currentUser: BehaviorSubject<User> = new BehaviorSubject({
     id: 0,
     email: '',
     password: '',
