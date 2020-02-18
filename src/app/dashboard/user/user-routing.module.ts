@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user.component';
 import { DetailComponent } from './detail/detail.component';
-import { LoggedInGuard } from 'src/app/auth/logged-in.guard';
+import { LoggedInGuard } from 'src/app/auth/Guards/logged-in.guard';
 import { AddComponent } from './add/add.component';
 
 
