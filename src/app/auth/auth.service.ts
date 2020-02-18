@@ -26,6 +26,10 @@ export class AuthService {
   constructor(private http: HttpClient, private helper: JwtHelperService) { }
 
   public getToken() {
+    return this.token;
+  }
+
+  public getCurrentUser() {
     return this.currentUser;
   }
 

@@ -14,7 +14,7 @@ export class BarComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.getToken().subscribe(user => { this.user = user; });
+    this.auth.getCurrentUser().subscribe(user => { this.user = user; });
     console.log(['user: ', this.user]);
   }
 

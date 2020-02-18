@@ -15,13 +15,14 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    if (!this.auth.token) {
+    const token = this.auth.getToken();
+    if (!token) {
       console.log('Ingelogd: Nope');
       return next.handle(request);
     }
     console.log('Ingelogd: Yep');
     const req = request.clone({
-      headers: request.headers.set('Authorization', `Basic ${this.auth.token}`)
+      headers: request.headers.set('Authorization', `Basic ${token}`)
     });
 
     return next.handle(req);
