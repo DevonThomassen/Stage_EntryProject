@@ -11,7 +11,7 @@ import { User } from '../interface/User';
 })
 export class AuthService {
 
-  public token: string;
+  private token: string;
   private currentUser: BehaviorSubject<User> = new BehaviorSubject({
     id: 0,
     email: '',
