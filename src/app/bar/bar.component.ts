@@ -10,13 +10,12 @@ import { User } from '../interface/User';
 })
 export class BarComponent implements OnInit {
 
-  user: User;
+  public user: User;
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe(user => { this.user = user; });
     console.log(['user: ', this.user]);
   }
-
 
 }

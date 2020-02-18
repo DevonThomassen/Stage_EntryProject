@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 20px;
+  background-color: #6c5ce7;
+
+  .imgbox {
+    display: inline-flex;
+    background-color: #00cec9;
+    border-radius: 10px;
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .namebox {
+    display: inline-flex;
+    vertical-align: middle;
+
+    h1 {
+      padding-left: 15px;
+    }
+  }
+}
