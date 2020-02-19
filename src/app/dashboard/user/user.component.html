@@ -31,6 +31,6 @@
 <div class="grid">
   <div *ngFor="let user of users | async" (click)="onSelect(user)">
     <p>{{user.firstName}} {{user.lastName}}</p>
-    <img src='{{user.avatar}}' />
+    <img [src]="user.avatar === '' ? 'assets/placeholder.png' : user.avatar" />
   </div>
 </div>
