@@ -7,10 +7,10 @@ import { AuthService } from '../auth.service';
 })
 export class LoggedOutGuard implements CanActivate {
 
-  constructor(public authentication: AuthService, public router: Router) { }
+  constructor(private authentication: AuthService, private router: Router) { }
 
   canActivate() {
-    if (!this.authentication.loggedIn()) {
+    if (!this.authentication.loggedIn() || '') {
       return true;
     }
     this.router.navigate(['/dashboard']);
