@@ -10,10 +10,12 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
+import { AuthService } from '../auth/auth.service';
+
 @Injectable()
 export class ErrorHandelerInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
@@ -29,9 +31,9 @@ export class ErrorHandelerInterceptor implements HttpInterceptor {
           reason: error && error.error.reason ? error.error.reason : '',
           status: error.status
         };
-        if (error.status === 401){
-          // TODO: LogOut
-          console.log('Logout function');
+        if (error.status === 401) {
+          throwError(error);
+          this.auth.logOut();
         }
         return throwError(error);
       })
