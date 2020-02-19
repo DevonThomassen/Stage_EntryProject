@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   private totalUsers: number;
   private offset = 0;
   limit = 20;
-
+  page = 1;
 
   constructor(private router: Router, private userService: UserService) { }
 
@@ -46,23 +46,27 @@ export class UserComponent implements OnInit {
 
   firstPage() {
     this.offset = 0;
+    this.page = this.offset / this.limit + 1;
     this.getUsers();
   }
 
   previousPage() {
     if ((this.offset - this.limit) < 0 || (isNaN(this.offset) || isNaN(this.limit))) { return; }
     this.offset = this.offset - this.limit;
+    this.page = this.offset / this.limit + 1;
     this.getUsers();
   }
 
   nextPage() {
     if ((this.offset + this.limit) > this.totalUsers) { return; }
     this.offset = this.offset + this.limit;
+    this.page = this.offset / this.limit + 1;
     this.getUsers();
   }
 
   lastPage() {
-    this.offset = Math.ceil(this.totalUsers / this.limit) * this.limit;
+    this.offset = Math.ceil(this.totalUsers / this.limit) * this.limit - this.limit;
+    this.page = this.offset / this.limit + 1;
     this.getUsers();
   }
 

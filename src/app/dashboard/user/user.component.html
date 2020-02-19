@@ -4,18 +4,26 @@
     <input type="text" [(ngModel)]="limit" required />
   </div> -->
   <div class="icons">
-    <i class="material-icons" (click)="firstPage()" title="First page">
-      first_page
-    </i>
-    <i class="material-icons" (click)="previousPage()" title="Previous page">
-      chevron_left
-    </i>
-    <i class="material-icons" (click)="nextPage()" title="Next page">
-      chevron_right
-    </i>
-    <i class="material-icons" (click)="lastPage()" title="Last page">
-      last_page
-    </i>
+    <div>
+      <i class="material-icons" (click)="firstPage()" title="First page">
+        first_page
+      </i>
+      <i class="material-icons" (click)="previousPage()" title="Previous page">
+        chevron_left
+      </i>
+      <i class="material-icons" (click)="nextPage()" title="Next page">
+        chevron_right
+      </i>
+      <i class="material-icons" (click)="lastPage()" title="Last page">
+        last_page
+      </i>
+    </div>
+    <div class="page">
+      <i class="material-icons-outlined">
+        insert_drive_file
+      </i>
+      {{page}}
+    </div>
   </div>
   <button (click)="addUser()">Add user</button>
 </div>
