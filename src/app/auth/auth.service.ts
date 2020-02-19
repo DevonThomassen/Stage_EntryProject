@@ -52,7 +52,16 @@ export class AuthService {
 
   logOut() {
     this.token.next('');
-    this.currentUser.next();
+    this.currentUser.next({
+      id: 0,
+      email: '',
+      password: '',
+      firstName: 'Bleep',
+      lastName: 'Bloop',
+      avatar: 'https://robohash.org/consecteturmagniid.jpg?size=100x100&set=set1',
+      created_at: '',
+      updated_at: ''
+    });
     localStorage.removeItem('Token');
     this.router.navigate(['./auth']);
   }
