@@ -1,8 +1,19 @@
 <div>
-  <button [routerLink]="['/dashboard']">Back</button>
-
-  <button (click)="enableEdit()">Edit</button>
-  <button (click)="deleteUser()">Delete</button>
+  <i class="material-icons" [routerLink]="['/dashboard']" title="Navigate to dashboard">
+    navigate_before
+  </i>
+  <i class="material-icons" (click)="enableEdit()" title="Edit user">
+    edit
+  </i>
+  <i class="material-icons" (click)="deleteUser()" title="Remove user">
+    remove
+  </i>
+  <i class="material-icons" (click)="backward()" title="Previouse user">
+    arrow_back_ios
+  </i>
+  <i class="material-icons" (click)="forward()" title="Next user">
+    arrow_forward_ios
+  </i>
 
   <div [ngSwitch]="edit">
     <div *ngSwitchCase="true">
@@ -29,7 +40,7 @@
         <input type="text" [(ngModel)]="user.lastName">
       </div>
     </div>
-    
+
     <div *ngSwitchDefault>
       <div>
         <p>ID:</p>
