@@ -24,6 +24,11 @@
       width: 100%;
     }
   }
+  .icons {
+    i {
+      cursor: pointer;
+    }
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -31,8 +36,8 @@
     div {
       margin: 1em;
       padding: 1em;
-      background-color: #00b894;
-      border-radius: 5px;
+      background-color: #74b9ff;
+      border-radius: 10px;
       text-align: center;
     }
   }

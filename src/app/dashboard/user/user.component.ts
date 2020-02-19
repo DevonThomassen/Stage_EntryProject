@@ -12,10 +12,10 @@ import { UserService } from './user.service';
 export class UserComponent implements OnInit {
 
   users: Observable<User[]>;
-  private totalUsers: number;
 
-  offset = 0;
-  limit = 200;
+  private totalUsers: number;
+  private offset = 0;
+  limit = 20;
 
 
   constructor(private router: Router, private userService: UserService) { }
@@ -36,16 +36,34 @@ export class UserComponent implements OnInit {
       });
   }
 
-  getParams() {
-    this.getUsers();
-  }
-
   onSelect(user: User) {
     this.router.navigate([`dashboard/user/detail/${user.id}`]);
   }
 
   addUser() {
     this.router.navigate(['dashboard/user/add']);
+  }
+
+  firstPage() {
+    this.offset = 0;
+    this.getUsers();
+  }
+
+  previousPage() {
+    if ((this.offset - this.limit) < 0 || (isNaN(this.offset) || isNaN(this.limit))) { return; }
+    this.offset = this.offset - this.limit;
+    this.getUsers();
+  }
+
+  nextPage() {
+    if ((this.offset + this.limit) > this.totalUsers) { return; }
+    this.offset = this.offset + this.limit;
+    this.getUsers();
+  }
+
+  lastPage() {
+    this.offset = Math.ceil(this.totalUsers / this.limit) * this.limit;
+    this.getUsers();
   }
 
 }

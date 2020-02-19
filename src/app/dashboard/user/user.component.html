@@ -1,14 +1,21 @@
 <div class="col">
-  <div class="params">
-    <div>
-      <label>Offset </label>
-      <input type="text" [(ngModel)]="offset" required />
-      <div>
-      </div>
-      <label>Limit </label>
-      <input type="text" [(ngModel)]="limit" required />
-    </div>
-    <button (click)="getParams()">Execute</button>
+  <!-- <div class="params">
+    <label>Limit </label>
+    <input type="text" [(ngModel)]="limit" required />
+  </div> -->
+  <div class="icons">
+    <i class="material-icons" (click)="firstPage()" title="First page">
+      first_page
+    </i>
+    <i class="material-icons" (click)="previousPage()" title="Previous page">
+      chevron_left
+    </i>
+    <i class="material-icons" (click)="nextPage()" title="Next page">
+      chevron_right
+    </i>
+    <i class="material-icons" (click)="lastPage()" title="Last page">
+      last_page
+    </i>
   </div>
   <button (click)="addUser()">Add user</button>
 </div>
