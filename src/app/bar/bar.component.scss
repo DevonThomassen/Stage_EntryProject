@@ -1,3 +1,5 @@
+@import "../../global.scss";
+
 :host {
   display: flex;
   box-sizing: border-box;
@@ -22,6 +24,19 @@
 
     h1 {
       padding-left: 15px;
+    }
+  }
+
+  .buttonbox {
+    margin-left: auto;
+    align-self: center;
+
+    button {
+      @extend %button;
+      box-sizing: border-box;
+      padding: 20px 40px;
+      border: #ff7675 1px solid;
+      background-color: #ffeaa7;
     }
   }
 }
