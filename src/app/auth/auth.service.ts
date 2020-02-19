@@ -47,6 +47,10 @@ export class AuthService {
 
   loggedIn(): boolean {
   logOut() {
+    this.token.next('');
+    this.currentUser.next();
+    localStorage.removeItem('Token');
+    this.router.navigate(['./auth']);
   }
 
 }
