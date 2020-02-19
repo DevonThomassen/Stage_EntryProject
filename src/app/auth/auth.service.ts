@@ -25,19 +25,17 @@ export class AuthService {
 
   constructor(private http: HttpClient, private helper: JwtHelperService) { }
 
-  public getToken() {
-    return this.token;
+  getToken(): string {
   }
 
-  public getCurrentUser() {
+  getCurrentUser(): Observable<User> {
     return this.currentUser;
   }
 
-  public isAuthenticated(): boolean {
-    return !this.helper.isTokenExpired(this.token);
+  isAuthenticated(): boolean {
   }
 
-  public LogIn(credentials: { email: string, password: string }) {
+  logIn(credentials: { email: string, password: string }): Observable<{ token: string }> {
     return this.http.post('/auth/login', credentials).pipe(
       tap((data: { token: string }) => {
         this.token = data.token;
@@ -47,8 +45,8 @@ export class AuthService {
     );
   }
 
-  public loggedIn() {
-    return !!this.token;
+  loggedIn(): boolean {
+  logOut() {
   }
 
 }

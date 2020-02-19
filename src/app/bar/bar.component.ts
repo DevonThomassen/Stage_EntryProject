@@ -10,8 +10,7 @@ import { User } from '../interface/User';
 })
 export class BarComponent implements OnInit {
 
-  public user: User;
-  constructor(private auth: AuthService) { }
+  user: User;
 
   ngOnInit(): void {
     this.auth.getCurrentUser().subscribe(user => { this.user = user; });

@@ -10,20 +10,20 @@ import { UserService } from '../user.service';
 })
 export class AddComponent implements OnInit {
 
-  public user: AddUser = {
+  user: AddUser = {
     email: '',
     password: '',
     firstName: '',
     lastName: ''
   };
-  public error: string;
+  error: string;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  Submit() {
+  submit() {
     this.userService.AddUser(this.user).subscribe(res => console.log(res), err => this.error = err);
   }
 

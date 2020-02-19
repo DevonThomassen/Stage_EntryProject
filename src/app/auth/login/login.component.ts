@@ -10,21 +10,21 @@ import { Credential } from './../../interface/Credential';
 })
 export class LoginComponent implements OnInit {
 
-  public credentials: Credential = {
+  credentials: Credential = {
     email: 'admin',
     password: 'admin'
   };
 
-  public rememberMe = false;
-  public error: string;
+  rememberMe = false;
+  error: string;
 
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  public LogIn() {
-    this.auth.LogIn(this.credentials).subscribe(
+  LogIn(): void {
+    this.auth.logIn(this.credentials).subscribe(
       () => this.router.navigate(['/dashboard'])
     );
   }

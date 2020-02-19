@@ -11,11 +11,11 @@ import { UserService } from './user.service';
 })
 export class UserComponent implements OnInit {
 
-  public users: Observable<User[]>;
+  users: Observable<User[]>;
   private totalUsers: number;
 
-  public offset = 0;
-  public limit = 200;
+  offset = 0;
+  limit = 200;
 
 
   constructor(private router: Router, private userService: UserService) { }
