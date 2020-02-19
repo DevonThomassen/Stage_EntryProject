@@ -53,8 +53,20 @@ export class DetailComponent implements OnInit {
 
   deleteUser() {
     // TODO: Confirm dialog
-    this.userService.DeleteUser(this.user.id).subscribe(err => { throwError(err)});
+    this.userService.DeleteUser(this.user.id).subscribe(err => { throwError(err) });
     this.router.navigate(['/dashboard']);
+  }
+
+  backward() {
+    // TODO: Fix negatives and non existing users 
+    this.userService.getUserById(this.user.id - 1).subscribe(res => this.user = res);
+    this.router.navigate([`dashboard/user/detail/${this.user.id - 1}`]);
+  }
+
+  forward() {
+    // TODO: Fix more than total and non existing users
+    this.userService.getUserById(this.user.id + 1).subscribe(res => this.user = res);
+    this.router.navigate([`dashboard/user/detail/${this.user.id + 1}`]);
   }
 
 }
