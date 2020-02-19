@@ -23,7 +23,13 @@ export class AuthService {
     updated_at: ''
   });
 
-  constructor(private http: HttpClient, private helper: JwtHelperService) { }
+  constructor(
+    private http: HttpClient, private helper: JwtHelperService, private router: Router) {
+    const existingToken = localStorage.getItem('Token');
+    if (!existingToken) { return; }
+    this.token.next(existingToken);
+    this.currentUser.next(this.helper.decodeToken(this.token.value));
+  }
 
   getToken(): string {
   }
