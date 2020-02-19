@@ -32,6 +32,7 @@ export class AuthService {
   }
 
   getToken(): string {
+    return this.token.value;
   }
 
   getCurrentUser(): Observable<User> {
