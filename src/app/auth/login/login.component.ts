@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  LogIn(): void {
+  logIn(): void {
     this.auth.logIn(this.credentials).subscribe(
       () => this.router.navigate(['/dashboard'])
     );
