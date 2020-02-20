@@ -1,6 +1,14 @@
+$black: #080809;
+$grey: #A8A19E;
+$orange: #FC1607;
+$clouds: #EFE2DC;
+
+
 %button {
   box-sizing: border-box;
-  background: white;
-  border-radius: 0.5em;
+  border-radius: 5px;
+  color: $clouds;
+  background-color: $orange;
+  font-size: medium;
   cursor: pointer;
 }
