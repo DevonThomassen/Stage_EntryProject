@@ -1,42 +1,43 @@
 @import "../../global.scss";
 
 :host {
+  $p: 20px;
+
   display: flex;
   box-sizing: border-box;
+  height: 150px;
+  width: 100%;
   margin: 0;
-  padding: 20px;
-  background-color: #6c5ce7;
+  padding: $p;
+  background-color: $black;
+  align-items: center;
 
   .imgbox {
     display: inline-flex;
-    background-color: #74b9ff;
+    background-color: $grey;
     border-radius: 10px;
-
-    img {
-      height: 100px;
-      width: 100px;
-    }
+    height: 100px;
+    width: 100px;
   }
 
   .namebox {
-    display: inline-flex;
-    align-items: center;
-
     h1 {
-      padding-left: 15px;
+      margin-left: 25px;
+      color: #efe2dc;
     }
   }
 
   .buttonbox {
     margin-left: auto;
-    align-self: center;
 
     button {
       @extend %button;
-      box-sizing: border-box;
-      padding: 20px 40px;
-      border: #ff7675 1px solid;
-      background-color: #ffeaa7;
+      height: 60px;
+      width: 200px;
+      font-size: 26pt;
+      font-weight: 900;
+      border: none;
+      // padding: 20px 40px;
     }
   }
 }
