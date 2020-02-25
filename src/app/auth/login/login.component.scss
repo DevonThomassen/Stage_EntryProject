@@ -1,11 +1,12 @@
 @import "../../../global.scss";
 
+$height: 50px;
+
 :host {
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   flex-direction: column;
-  // background-color: green;
   height: 100%;
   margin: 5em 10em;
   align-self: center;
@@ -20,7 +21,7 @@
     form {
       display: flex;
       flex-direction: column;
-      width: 500px;
+      width: 400px;
 
       .in {
         display: flex;
@@ -29,7 +30,7 @@
         label {
           display: flex;
           color: $orange;
-          font-size: 24px;
+          font-size: 16px;
         }
 
         input {
@@ -39,12 +40,12 @@
       .box {
         .in {
           input {
-            height: 75px;
+            height: $height;
             width: 100%;
             border: $grey 1px solid;
             border-radius: 10px;
             color: $dark;
-            font-size: 24px;
+            font-size: 16px;
             padding: 25px;
           }
         }
@@ -57,14 +58,14 @@
 
         > button {
           @extend %button;
-          height: 100px;
+          height: $height;
           width: 100%;
           border: none;
-          font-size: 32px;
+          font-size: 16px;
         }
       }
       > .in {
-        margin: 50px 0;
+        margin: $height / 2 0;
         justify-content: center;
       }
     }
