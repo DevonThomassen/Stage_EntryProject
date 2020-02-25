@@ -12,11 +12,13 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { BarComponent } from './bar/bar.component';
+import { NumberOnlyDirective } from './directive/numberonly.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     BarComponent,
+    NumberOnlyDirective,
   ],
   imports: [
     BrowserModule,
