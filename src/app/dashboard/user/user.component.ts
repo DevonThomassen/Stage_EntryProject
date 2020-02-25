@@ -3,6 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { User } from 'src/app/interface/User';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -26,7 +27,7 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers(this.offset, this.limit).subscribe(
+    this.userService.getUsers(this.offset, this.limit).pipe(first()).subscribe(
       res => {
         this.users = of(res.data);
         this.totalUsers = res.total;
@@ -47,6 +48,7 @@ export class UserComponent implements OnInit {
     this.router.navigate(['dashboard/user/add']);
   }
 
+  //#region pagination
   firstPage() {
     this.offset = 0;
     this.getUsers();
@@ -59,8 +61,8 @@ export class UserComponent implements OnInit {
   }
 
   nextPage() {
-    if ((this.offset + this.limit) > this.totalUsers) { return; }
-    this.offset = this.offset + this.limit;
+    if ((this.offset + +this.limit) > this.totalUsers) { return; }
+    this.offset = this.offset + +this.limit;
     this.getUsers();
   }
 
@@ -68,5 +70,6 @@ export class UserComponent implements OnInit {
     this.offset = Math.ceil(this.totalUsers / this.limit) * this.limit - this.limit;
     this.getUsers();
   }
+  //#endregion
 
 }
