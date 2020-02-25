@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import './global.scss';
 
 * {
   font-family: "Roboto", sans-serif;
@@ -11,5 +12,5 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #EFE2DC;
+  background-color: $white;
 }
