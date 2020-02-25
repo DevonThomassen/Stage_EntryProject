@@ -3,38 +3,75 @@
 :host {
   display: flex;
   box-sizing: border-box;
-  background-color: #d2dae2;
   justify-content: center;
   flex-direction: column;
-  height: 700px;
-  border-radius: 5em;
+  // background-color: green;
+  height: 100%;
   margin: 5em 10em;
+  align-self: center;
+  align-items: center;
+  padding: 100px;
+  background-color: rgba(128, 128, 128, 0.1);
 
   h1 {
-    margin: 0;
-    padding: 0;
-    align-self: center;
+    font-size: 36pt;
   }
 
-  form {
-    div {
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      width: 300px;
-    }
+  > div {
+    display: flex;
+    flex: 1;
+    align-items: center;
 
-    button {
-      @extend %button;
-      margin: 20px;
-      padding: 20px;
-      border: #636e72 2px solid;
-    }
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 500px;
 
-    .error {
-      flex-grow: 1;
-      flex-basis: 0;
-      color: red;
+      .in {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          display: flex;
+          color: $orange;
+          font-size: 24px;
+        }
+
+        input {
+          box-sizing: border-box;
+        }
+      }
+      .box {
+        .in {
+          input {
+            height: 75px;
+            width: 100%;
+            border: $grey 1px solid;
+            border-radius: 10px;
+            color: $dark;
+            font-size: 24px;
+            padding: 25px;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-self: flex-end;
+        flex-direction: column;
+
+        > button {
+          @extend %button;
+          height: 100px;
+          width: 100%;
+          border: none;
+          font-size: 32px;
+        }
+      }
+      > .in {
+        margin: 50px 0;
+        justify-content: center;
+      }
     }
   }
 }

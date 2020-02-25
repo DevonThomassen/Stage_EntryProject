@@ -1,23 +1,24 @@
 <h1>Login</h1>
-<form (ngSubmit)="logIn()">
-  <div>
-    <label for="email">Email</label>
-    <input type="text" [(ngModel)]="credentials.email" name="email" required />
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" [(ngModel)]="credentials.password" name="password" required />
-  </div>
-  <div>
-    <label for="remember">Remember me</label>
-    <input type="checkbox" [(ngModel)]="rememberMe" name="remember" />
-  </div>
-  <div>
-    <button type="submit">Submit</button>
-  </div>
-  
-  <div class="error">
-    {{error}}
-  </div>
-</form>
-<!-- <button [routerLink]="['/dashboard']">To dashboard</button> -->
+<div>
+  <form (ngSubmit)="logIn()">
+    <div class="box">
+      <div class="in">
+        <label for="email">Email</label>
+        <input type="text" [(ngModel)]="credentials.email" name="email" required />
+      </div>
+      <div class="in">
+        <label for="password">Password</label>
+        <input type="password" [(ngModel)]="credentials.password" name="password" required />
+      </div>
+    </div>
+    <div class="in">
+      <label for="remember">Remember me
+        <input type="checkbox" [(ngModel)]="rememberMe" name="remember" />
+      </label>
+    </div>
+    <div class="buttons">
+      <button type="submit">Submit</button>
+    </div>
+
+  </form>
+</div>
