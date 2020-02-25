@@ -1,10 +1,32 @@
 <div class="col">
-  <!-- <div class="params">
-    <label>Limit </label>
-    <input type="text" [(ngModel)]="limit" required />
-  </div> -->
-  <div class="icons">
-    <div>
+  <button (click)="addUser()">
+    <i class="material-icons">
+      add
+    </i>Add user</button>
+  <div class="block">
+    <div class="page">
+      <i class="material-icons-outlined">
+        insert_drive_file
+      </i>
+      <p>
+        {{page}} of the {{totalPages}}
+      </p>
+    </div>
+    <div class="amount">
+      <p>
+        Items per page
+      </p>
+      <i class="material-icons">
+        list
+      </i>
+      <select [(ngModel)]="limit" (ngModelChange)="getUsers()">
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+      </select>
+    </div>
+    <div class="icons">
       <i class="material-icons" (click)="firstPage()" title="First page">
         first_page
       </i>
@@ -18,14 +40,7 @@
         last_page
       </i>
     </div>
-    <div class="page">
-      <i class="material-icons-outlined">
-        insert_drive_file
-      </i>
-      {{page}} of the {{totalPages}}
-    </div>
   </div>
-  <button (click)="addUser()">Add user</button>
 </div>
 
 <div class="grid">
