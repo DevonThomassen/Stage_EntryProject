@@ -12,6 +12,8 @@ import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { BarComponent } from './bar/bar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModuleModule } from './shared-module/shared-module.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { BarComponent } from './bar/bar.component';
       }
     }),
     AuthModule,
-    DashboardModule
+    DashboardModule,
+    BrowserAnimationsModule,
+    SharedModuleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },
