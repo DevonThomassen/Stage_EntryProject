@@ -1,5 +1,5 @@
-<div>
-  <i class="material-icons" [routerLink]="['/dashboard']" title="Navigate to dashboard">
+<app-dialog *ngIf="openDialogEdit" [info]="msgEdit" (closeDialog)="toggleEdit()" (confirmed)="confirmedEdit()"></app-dialog>
+<app-dialog *ngIf="openDialogDelete" [info]="msgDelete" (closeDialog)="toggleDelete()" (confirmed)="confirmedDelete()"></app-dialog>
     navigate_before
   </i>
   <i class="material-icons" (click)="enableEdit()" title="Edit user">

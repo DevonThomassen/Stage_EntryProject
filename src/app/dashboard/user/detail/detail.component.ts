@@ -25,6 +25,11 @@ export class DetailComponent implements OnInit {
 
   edit: boolean = false;
 
+  msgEdit: string;
+  msgDelete: string;
+  openDialogEdit = false;
+  openDialogDelete = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -42,23 +47,23 @@ export class DetailComponent implements OnInit {
   }
 
   enableEdit() {
-    // TODO: Confirm dialog
     this.edit = !this.edit;
     this.location.go(`dashboard/user/edit/${this.user.id}`);
   }
 
   editUser() {
-    this.userService.EditUser(this.user).subscribe();
+    this.msgEdit = 'Are you sure, you want to save the new data?';
+    this.openDialogEdit = !this.openDialogEdit;
   }
 
   deleteUser() {
-    // TODO: Confirm dialog
-    this.userService.DeleteUser(this.user.id).subscribe(err => { throwError(err) });
-    this.router.navigate(['/dashboard']);
+    this.msgDelete = 'Are you sure, you want to delete the user?';
+    this.openDialogDelete = !this.openDialogDelete;
+
   }
 
   backward() {
-    // TODO: Fix negatives and non existing users 
+    // TODO: Fix negatives and non existing users
     this.userService.getUserById(this.user.id - 1).subscribe(res => this.user = res);
     this.router.navigate([`dashboard/user/detail/${this.user.id - 1}`]);
   }
@@ -67,6 +72,26 @@ export class DetailComponent implements OnInit {
     // TODO: Fix more than total and non existing users
     this.userService.getUserById(this.user.id + 1).subscribe(res => this.user = res);
     this.router.navigate([`dashboard/user/detail/${this.user.id + 1}`]);
+  }
+
+  toggleEdit() {
+    this.openDialogEdit = !this.openDialogEdit;
+  }
+
+  confirmedEdit() {
+    this.toggleEdit();
+    this.userService.EditUser(this.user).subscribe();
+    this.router.navigate(['/dashboard']);
+  }
+
+  toggleDelete() {
+    this.openDialogDelete = !this.openDialogDelete;
+  }
+
+  confirmedDelete() {
+    this.toggleDelete();
+    this.userService.DeleteUser(this.user.id).subscribe(err => throwError(err));
+    this.router.navigate(['/dashboard']);
   }
 
 }
