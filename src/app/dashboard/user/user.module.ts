@@ -6,6 +6,7 @@ import { UserComponent } from './user.component';
 import { FormsModule } from '@angular/forms';
 import { DetailComponent } from './detail/detail.component';
 import { AddComponent } from './add/add.component';
+import { SharedModuleModule } from 'src/app/shared-module/shared-module.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AddComponent } from './add/add.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModuleModule
   ]
 })
 export class UserModule { }
