@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddUser } from '../../../interface/AddUser';
-import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -18,13 +18,15 @@ export class AddComponent implements OnInit {
   };
   error: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   submit() {
-    this.userService.AddUser(this.user).subscribe(res => console.log(res), err => this.error = err);
+    this.userService.AddUser(this.user).subscribe(
+      res => this.router.navigate(['./dashboard']),
+      err => this.error = err);
   }
 
 }
