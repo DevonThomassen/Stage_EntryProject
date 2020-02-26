@@ -1,3 +1,5 @@
+<app-dialog *ngIf="openDialog" [info]="msg" (closeDialog)="toggle()" (confirmed)="confirmed()"></app-dialog>
+
 <div class="imgbox">
   <img [src]='user.avatar' />
 </div>

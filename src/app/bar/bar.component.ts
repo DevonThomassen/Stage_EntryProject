@@ -22,15 +22,26 @@ export class BarComponent implements OnInit {
     updated_at: ''
   };
 
+  msg = 'Are you sure, you want to log out?';
+  openDialog = false;
+
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.getCurrentUser().subscribe(user => { this.user = user;  });
+    this.auth.getCurrentUser().subscribe(user => { this.user = user; });
     console.log(['user: ', this.user]);
   }
 
   logOut() {
-    localStorage.removeItem('Token');
+    this.toggle();
+  }
+
+  toggle() {
+    this.openDialog = !this.openDialog;
+  }
+
+  confirmed() {
+    this.toggle();
     this.auth.logOut();
   }
 
