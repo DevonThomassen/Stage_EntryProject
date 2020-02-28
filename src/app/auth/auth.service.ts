@@ -56,9 +56,9 @@ export class AuthService {
       id: 0,
       email: '',
       password: '',
-      firstName: 'Bleep',
-      lastName: 'Bloop',
-      avatar: 'https://robohash.org/consecteturmagniid.jpg?size=100x100&set=set1',
+      firstName: '',
+      lastName: '',
+      avatar: '',
       created_at: '',
       updated_at: ''
     });
