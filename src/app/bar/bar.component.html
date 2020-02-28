@@ -1,6 +1,6 @@
 <app-dialog *ngIf="openDialog" [info]="msg" (closeDialog)="toggle()" (confirmed)="confirmed()"></app-dialog>
 
-<div class="imgbox">
+<div *ngIf="user.id !== 0" class="imgbox">
   <img [src]='user.avatar' />
 </div>
 <div class="namebox">

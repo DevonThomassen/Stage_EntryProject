@@ -17,36 +17,48 @@ $height: 50px;
     display: flex;
     flex: 1;
     align-items: center;
+    flex-direction: column;
 
     form {
       display: flex;
       flex-direction: column;
       width: 400px;
 
-      .in {
-        display: flex;
-        flex-direction: column;
-
-        label {
-          display: flex;
-          color: $orange;
-          font-size: 16px;
-        }
-
-        input {
-          box-sizing: border-box;
-        }
-      }
       .box {
         .in {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            display: flex;
+            color: $orange;
+            font-size: 16px;
+          }
+
           input {
+            $bwInValid: 5px;
+            $bwValid: 3px;
+
             height: $height;
             width: 100%;
             border: $grey 1px solid;
             border-radius: 10px;
             color: $dark;
             font-size: 16px;
-            padding: 25px;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: ease 0.2s;
+
+            &.ng-dirty.ng-invalid:not(form) {
+              border-color: #a94442;
+              border-width: $bwValid;
+              transition: 0.2s;
+            }
+            &.ng-dirty.ng-valid:not(form) {
+              border-width: $bwValid;
+              border-color: #42A948;
+              transition: 0.2s;
+            }
           }
         }
       }
@@ -67,6 +79,20 @@ $height: 50px;
       > .in {
         margin: $height / 2 0;
         justify-content: center;
+      }
+    }
+
+    .error {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      p {
+        display: inline-block;
+
+        span {
+          color: $orange;
+        }
       }
     }
   }
