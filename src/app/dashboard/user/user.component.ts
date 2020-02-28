@@ -27,6 +27,10 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
+    if ((this.offset / this.limit + 1) % 1) {
+      this.offset = Math.floor(this.offset / this.limit + 1) * this.limit - this.limit;
+    }
+
     this.userService.getUsers(this.offset, this.limit).pipe(first()).subscribe(
       res => {
         this.users = of(res.data);
