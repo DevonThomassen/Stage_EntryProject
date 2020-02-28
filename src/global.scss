@@ -1,3 +1,4 @@
+// Colors
 $black: #080809;
 $grey: #A8A19E;
 $orange: #FC1607;
@@ -5,7 +6,10 @@ $clouds: #EFE2DC;
 $white: #F5F5F5;
 $dark: #54120B;
 
+// Measurements
+$app-bar-height: 150px;
 
+// Component style
 %button {
   box-sizing: border-box;
   border-radius: 5px;
