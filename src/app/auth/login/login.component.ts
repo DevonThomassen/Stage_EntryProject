@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { Credential } from './../../interface/Credential';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,17 @@ import { Credential } from './../../interface/Credential';
 })
 export class LoginComponent implements OnInit {
 
-  credentials: Credential = {
-    email: 'admin',
-    password: 'admin'
-  };
+  credentials = new FormGroup({
+    email: new FormControl('', [
+      Validators.required
+    ]),
+    password: new FormControl('', [
+      Validators.required
+    ])
+  });
 
   rememberMe = false;
-  error: string;
+  error: HttpErrorResponse;
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -24,9 +29,13 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): void {
-    this.auth.logIn(this.credentials).subscribe(
-      () => this.router.navigate(['/dashboard'])
+    if (!this.credentials.valid) { return; }
+
+    this.auth.logIn(this.credentials.value).subscribe(
+      () => this.router.navigate(['/dashboard']),
+      (err: HttpErrorResponse) => this.error = err
     );
+    console.warn(this.credentials.value);
   }
 
 }
