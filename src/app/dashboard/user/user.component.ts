@@ -23,9 +23,9 @@ export class UserComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('Page') && localStorage.getItem('Limit')) {
-      this.offset = parseInt(localStorage.getItem('Page'), 10) * parseInt(localStorage.getItem('Limit'), 10) - 1;
-      this.limit = parseInt(localStorage.getItem('Limit'), 10)
+    if (sessionStorage.getItem('Page') && sessionStorage.getItem('Limit')) {
+      this.offset = parseInt(sessionStorage.getItem('Page'), 10) * parseInt(sessionStorage.getItem('Limit'), 10) - 1;
+      this.limit = parseInt(sessionStorage.getItem('Limit'), 10)
     }
     this.getUsers();
   }
@@ -41,8 +41,8 @@ export class UserComponent implements OnInit {
         this.totalUsers = res.total;
         this.page = this.offset / this.limit + 1;
         this.totalPages = Math.ceil(this.totalUsers / this.limit);
-        localStorage.setItem('Page', this.page.toString());
-        localStorage.setItem('Limit', this.limit.toString());
+        sessionStorage.setItem('Page', this.page.toString());
+        sessionStorage.setItem('Limit', this.limit.toString());
         console.log(['res data', res.data]);
       },
       err => {
@@ -71,7 +71,7 @@ export class UserComponent implements OnInit {
   }
 
   nextPage() {
-    if ((this.offset + +this.limit) > this.totalUsers) { return; }
+    if ((this.offset + +this.limit) > this.totalUsers - 1) { return; }
     this.offset = this.offset + +this.limit;
     this.getUsers();
   }
