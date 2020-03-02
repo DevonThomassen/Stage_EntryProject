@@ -2,7 +2,8 @@
 
 :host {
   height: 100%;
-  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 
   .col {
     display: flex;
@@ -15,10 +16,13 @@
       align-items: center;
       align-self: flex-end;
 
+      .amount {
+        margin-right: 25px;
+      }
+
       div {
         display: inline-flex;
         align-items: center;
-        margin-right: 25px;
 
         p {
           display: inline-block;
@@ -51,10 +55,11 @@
     }
   }
   .grid {
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    justify-content: center;
-    align-content: center;
+    max-width: 1500px;
+    grid-template-columns: repeat(auto-fit, 300px);
+    place-content: center;
 
     div {
       margin: 1em;
@@ -63,6 +68,12 @@
       border-radius: 10px;
       text-align: center;
       cursor: pointer;
+
+      > p {
+        text-overflow: ellipsis;
+        max-height: 300px;
+        overflow: hidden;
+      }
 
       &::before {
         content: "edit";
