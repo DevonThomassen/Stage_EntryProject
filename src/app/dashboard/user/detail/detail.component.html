@@ -1,79 +1,97 @@
-<app-dialog *ngIf="openDialogEdit" [info]="msgEdit" (closeDialog)="toggleEdit()" (confirmed)="confirmedEdit()"></app-dialog>
-<app-dialog *ngIf="openDialogDelete" [info]="msgDelete" (closeDialog)="toggleDelete()" (confirmed)="confirmedDelete()"></app-dialog>
-    navigate_before
-  </i>
-  <i class="material-icons" (click)="enableEdit()" title="Edit user">
-    edit
-  </i>
-  <i class="material-icons" (click)="deleteUser()" title="Remove user">
-    remove
-  </i>
-  <i class="material-icons" (click)="backward()" title="Previous user">
-    arrow_back_ios
-  </i>
-  <i class="material-icons" (click)="forward()" title="Next user">
-    arrow_forward_ios
-  </i>
+<app-dialog *ngIf="openDialogEdit" [info]="msgEdit" (closeDialog)="toggleEdit()" (confirmed)="confirmedEdit()">
+</app-dialog>
+<app-dialog *ngIf="openDialogDelete" [info]="msgDelete" (closeDialog)="toggleDelete()" (confirmed)="confirmedDelete()">
+</app-dialog>
 
-  <div [ngSwitch]="edit">
-    <div *ngSwitchCase="true">
-      <button (click)="editUser()">Save</button>
+<div class="icons">
+  <div class="back">
+    <i class="material-icons" [routerLink]="['/dashboard']" title="Navigate to dashboard">
+      keyboard_backspace
+    </i>
+  </div>
+  <div class="page">
+    <i class="material-icons" (click)="backward()" title="Previous user">
+      keyboard_arrow_left
+    </i>
+    <i class="material-icons" (click)="forward()" title="Next user">
+      keyboard_arrow_right
+    </i>
+  </div>
+  <div class="user">
+    <i class="material-icons" (click)="enableEdit()" title="Edit user">
+      edit
+    </i>
+    <i class="material-icons" (click)="deleteUser()" title="Remove user">
+      remove
+    </i>
+  </div>
+</div>
+
+<div [ngSwitch]="edit">
+  <form *ngSwitchCase="true" [formGroup]="user" (ngSubmit)="editUser()" class="edit">
+    <button type="submit">Save</button>
+    <p>{{ this.user.value.identity.id }}</p>
+    <div formGroupName="personal">
       <div>
-        <p>ID:</p>
-        <p>{{ user.id }}</p>
+        <img [src]="this.user.value.personal.avatar === '' 
+          ? 'assets/placeholder.png' 
+          : this.user.value.personal.avatar" />
+        <input type="text" formControlName="avatar">
       </div>
       <div>
-        <img [src]="user.avatar === '' ? 'assets/placeholder.png' : user.avatar" />
-        <input type="text" [(ngModel)]="user.avatar">
+        <label for="firstName">Firstname</label>
+        <input type="text" formControlName="firstName">
       </div>
       <div>
-        <p>E-mail:</p>
-        <input type="text" [(ngModel)]="user.email">
-      </div>
-      <div>
-        <p>Password:</p>
-        <input type="text" [(ngModel)]="user.password">
-      </div>
-      <div>
-        <p>Firstname</p>
-        <input type="text" [(ngModel)]="user.firstName">
-      </div>
-      <div>
-        <p>LastName</p>
-        <input type="text" [(ngModel)]="user.lastName">
+        <label for="lastName">LastName</label>
+        <input type="text" formControlName="lastName">
       </div>
     </div>
-
-    <div *ngSwitchDefault>
+    <div formGroupName="identity">
       <div>
-        <p>ID:</p>
-        <p>{{ user.id }}</p>
-      </div>
-      <img [src]="user.avatar === '' ? 'assets/placeholder.png' : user.avatar" />
-      <div>
-        <p>E-mail: </p>
-        <p>{{ user.email }}</p>
+        <label for="email">E-mail</label>
+        <input type="text" formControlName="email">
       </div>
       <div>
-        <p>Password: </p>
-        <p>{{ user.password }}</p>
-      </div>
-      <div>
-        <p>Firstname</p>
-        <p>{{ user.firstName }}</p>
-      </div>
-      <div>
-        <p>Lastname: </p>
-        <p>{{ user.lastName }}</p>
+        <label for="password">Password</label>
+        <input type="password" formControlName="password">
       </div>
     </div>
+  </form>
+
+  <div *ngSwitchDefault class="detail">
+    <div class="h">
+      <h3>ID:</h3>
+      <p>{{ this.user.value.identity.id }}</p>
+      <img
+        [src]="this.user.value.personal.avatar === '' ? 'assets/placeholder.png' : this.user.value.personal.avatar" />
+    </div>
+    <div>
+      <h3>E-mail: </h3>
+      <p>{{ this.user.value.identity.email }}</p>
+    </div>
+    <div>
+      <h3>Password: </h3>
+      <p>{{ this.user.value.identity.password }}</p>
+    </div>
+    <div>
+      <h3>Firstname</h3>
+      <p>{{ this.user.value.personal.firstName }}</p>
+    </div>
+    <div>
+      <h3>Lastname: </h3>
+      <p>{{ this.user.value.personal.lastName }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="info">
+  <div>
+    <h3>User created at: </h3>
+    <p>{{this.user.value.data.created_at | date: 'long'}}</p>
   </div>
   <div>
-    <p>User created at: </p>
-    <p>{{ user.created_at }}</p>
-  </div>
-  <div>
-    <p>User updated at:</p>
-    <p>{{ user.updated_at }}</p>
+    <h3>User updated at:</h3>
+    <p>{{this.user.value.data.updated_at | date: 'long'}}</p>
   </div>
 </div>

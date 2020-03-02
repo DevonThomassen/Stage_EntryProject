@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { Location } from '@angular/common';
 import { throwError } from 'rxjs';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-detail',
@@ -12,16 +13,36 @@ import { throwError } from 'rxjs';
 })
 export class DetailComponent implements OnInit {
 
-  user: User = {
-    id: 0,
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    avatar: '',
-    created_at: '',
-    updated_at: ''
-  };
+  user = new FormGroup({
+    identity: new FormGroup({
+      id: new FormControl(0),
+      email: new FormControl('', [
+        Validators.required
+      ]),
+      password: new FormControl('', [
+        Validators.required
+      ])
+    }),
+    personal: new FormGroup({
+      firstName: new FormControl('', [
+        Validators.required
+      ]),
+      lastName: new FormControl('', [
+        Validators.required
+      ]),
+      avatar: new FormControl('', [
+        Validators.required
+      ])
+    }),
+    data: new FormGroup({
+      created_at: new FormControl('', [
+        Validators.required
+      ]),
+      updated_at: new FormControl('', [
+        Validators.required
+      ])
+    })
+  });
 
   edit: boolean = false;
 
@@ -43,12 +64,12 @@ export class DetailComponent implements OnInit {
   getUser() {
     const id = +this.route.snapshot.paramMap.get('id');
     console.log(`DE ID is: ${id}`);
-    this.userService.getUserById(id).subscribe(res => this.user = res);
+    this.userService.getUserById(id).subscribe(res => this.initializeUser(res));
   }
 
   enableEdit() {
     this.edit = !this.edit;
-    this.location.go(`dashboard/user/edit/${this.user.id}`);
+    // this.location.go(`dashboard/user/edit/${this.user.value.id}`);
   }
 
   editUser() {
@@ -64,14 +85,14 @@ export class DetailComponent implements OnInit {
 
   backward() {
     // TODO: Fix negatives and non existing users
-    this.userService.getUserById(this.user.id - 1).subscribe(res => this.user = res);
-    this.router.navigate([`dashboard/user/detail/${this.user.id - 1}`]);
+    this.userService.getUserById(this.user.value.identity.id - 1).subscribe(res => this.initializeUser(res));
+    this.router.navigate([`dashboard/user/detail/${this.user.value.identity.id - 1}`]);
   }
 
   forward() {
     // TODO: Fix more than total and non existing users
-    this.userService.getUserById(this.user.id + 1).subscribe(res => this.user = res);
-    this.router.navigate([`dashboard/user/detail/${this.user.id + 1}`]);
+    this.userService.getUserById(this.user.value.identity.id + 1).subscribe(res => this.initializeUser(res));
+    this.router.navigate([`dashboard/user/detail/${this.user.value.identity.id + 1}`]);
   }
 
   toggleEdit() {
@@ -80,7 +101,7 @@ export class DetailComponent implements OnInit {
 
   confirmedEdit() {
     this.toggleEdit();
-    this.userService.EditUser(this.user).subscribe();
+    this.userService.EditUser(this.user.value).subscribe();
     this.router.navigate(['/dashboard']);
   }
 
@@ -90,8 +111,41 @@ export class DetailComponent implements OnInit {
 
   confirmedDelete() {
     this.toggleDelete();
-    this.userService.DeleteUser(this.user.id).subscribe(err => throwError(err));
+    this.userService.DeleteUser(this.user.value.identity.id).subscribe(err => throwError(err));
     this.router.navigate(['/dashboard']);
+  }
+
+  initializeUser(res: User) {
+    this.user = new FormGroup({
+      identity: new FormGroup({
+        id: new FormControl(res.id),
+        email: new FormControl(res.email, [
+          Validators.required
+        ]),
+        password: new FormControl(res.password, [
+          Validators.required
+        ])
+      }),
+      personal: new FormGroup({
+        firstName: new FormControl(res.firstName, [
+          Validators.required
+        ]),
+        lastName: new FormControl(res.lastName, [
+          Validators.required
+        ]),
+        avatar: new FormControl(res.avatar, [
+          Validators.required
+        ])
+      }),
+      data: new FormGroup({
+        created_at: new FormControl(res.created_at, [
+          Validators.required
+        ]),
+        updated_at: new FormControl(res.updated_at, [
+          Validators.required
+        ])
+      })
+    });
   }
 
 }
