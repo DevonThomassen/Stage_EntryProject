@@ -11,13 +11,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  credentials = new FormGroup({
-    email: new FormControl('', [
-      Validators.required
-    ]),
-    password: new FormControl('', [
-      Validators.required
-    ])
+  form = new FormGroup({
+    credentials: new FormGroup({
+      email: new FormControl('', [
+        Validators.required
+      ]),
+      password: new FormControl('', [
+        Validators.required
+      ])
+    }),
+    additions: new FormGroup({
+      rememberMe: new FormControl(false)
+    })
   });
 
   rememberMe = false;
@@ -29,13 +34,13 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): void {
-    if (!this.credentials.valid) { return; }
+    if (!this.form.valid) { return; }
 
-    this.auth.logIn(this.credentials.value).subscribe(
+    this.auth.logIn(this.form.value.credentials, this.form.value.additions.rememberMe).subscribe(
       () => this.router.navigate(['/dashboard']),
       (err: HttpErrorResponse) => this.error = err
     );
-    console.warn(this.credentials.value);
+    console.warn(this.form.value.credentials);
   }
 
 }

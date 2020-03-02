@@ -1,24 +1,24 @@
 <div>
-  <form [formGroup]="credentials" (ngSubmit)="logIn()">
-    <div class="box">
+  <form [formGroup]="form" (ngSubmit)="logIn()">
+    <div class="box" formGroupName="credentials">
       <div class="in">
         <label for="email">Email</label>
         <input type="text" formControlName="email" />
-        <div *ngIf="this.credentials.get('email').hasError('required') && !this.credentials.get('email').pristine">
+        <div *ngIf="this.form.get('credentials.email').hasError('required') && !this.form.get('credentials.email').pristine">
           Email is required
         </div>
       </div>
       <div class="in">
         <label for="password">Password</label>
         <input type="password" formControlName="password" />
-        <div *ngIf="this.credentials.get('password').hasError('required') && !this.credentials.get('password').pristine">
+        <div *ngIf="this.form.get('credentials.password').hasError('required') && !this.form.get('credentials.password').pristine">
           Password is required
         </div>
       </div>
     </div>
-    <div class="in">
+    <div class="in" formGroupName="additions">
       <label for="remember">Remember me
-        <input type="checkbox" name="remember" />
+        <input type="checkbox" name="remember" formControlName="rememberMe"/>
       </label>
     </div>
     <div class="buttons">

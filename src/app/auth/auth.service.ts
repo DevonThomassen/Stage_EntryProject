@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
 import { User } from '../interface/User';
+import { Credential } from '../interface/Credential';
 
 @Injectable({
   providedIn: 'root'
@@ -35,13 +36,16 @@ export class AuthService {
     return !this.helper.isTokenExpired(this.getToken());
   }
 
-  logIn(credentials: { email: string, password: string }): Observable<{ token: string }> {
+  logIn(credentials: Credential, remember: boolean): Observable<{ token: string }> {
     return this.http.post('/auth/login', credentials).pipe(
       tap((data: { token: string }) => {
         this.token.next(data.token);
-        localStorage.setItem('Token', this.token.value);
         this.currentUser.next(this.helper.decodeToken(this.token.value));
-        console.log([this.token, this.currentUser]);
+        console.log([this.token, this.currentUser, remember]);
+
+        if (remember) {
+          localStorage.setItem('Token', this.token.value);
+        }
       })
     );
   }
