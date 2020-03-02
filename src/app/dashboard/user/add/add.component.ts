@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AddUser } from '../../../interface/AddUser';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add',
@@ -10,12 +11,20 @@ import { Router } from '@angular/router';
 })
 export class AddComponent implements OnInit {
 
-  user: AddUser = {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: ''
-  };
+  user = new FormGroup({
+    email: new FormControl('', [
+      Validators.required
+    ]),
+    password: new FormControl('', [
+      Validators.required
+    ]),
+    firstName: new FormControl('', [
+      Validators.required
+    ]),
+    lastName: new FormControl('', [
+      Validators.required
+    ])
+  });
   error: string;
 
   constructor(private userService: UserService, private router: Router) { }
@@ -24,7 +33,9 @@ export class AddComponent implements OnInit {
   }
 
   submit() {
-    this.userService.AddUser(this.user).subscribe(
+    if (!this.user.valid) { return; }
+
+    this.userService.AddUser(this.user.value).subscribe(
       res => this.router.navigate(['./dashboard']),
       err => this.error = err);
   }

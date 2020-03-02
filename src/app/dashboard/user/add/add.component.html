@@ -3,22 +3,22 @@
     keyboard_backspace
   </i>
 </div>
-<form (ngSubmit)="submit()">
+<form [formGroup]="user" (ngSubmit)="submit()">
   <div>
     <label for="firstName">Firstname</label>
-    <input type="text" [(ngModel)]="user.firstName" name="firstName" required />
+    <input type="text" formControlName="firstName" required />
   </div>
   <div>
     <label for="lastName">Lastname</label>
-    <input type="text" [(ngModel)]="user.lastName" name="lastName" required />
+    <input type="text" formControlName="lastName" required />
   </div>
   <div>
     <label for="email">Email</label>
-    <input type="text" [(ngModel)]="user.email" name="email" required />
+    <input type="text" formControlName="email" required />
   </div>
   <div>
     <label for="password">Password</label>
-    <input type="password" [(ngModel)]="user.password" name="password" required />
+    <input type="password" formControlName="password" required />
   </div>
   <div class="buttons">
     <button type="submit">Submit</button>

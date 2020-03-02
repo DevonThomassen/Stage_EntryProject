@@ -15,7 +15,7 @@ $height: 50px;
     align-self: center;
     text-align: left;
     box-sizing: border-box;
-    
+
     i {
       font-size: 32px;
       cursor: pointer;
@@ -27,7 +27,7 @@ $height: 50px;
     flex-direction: column;
     width: 400px;
     align-self: center;
-    
+
     div {
       margin: 5px 0;
 
@@ -36,8 +36,12 @@ $height: 50px;
         color: $orange;
         font-size: 16px;
       }
-      
+
       input {
+        $bwInValid: 5px;
+        $bwValid: 3px;
+
+        height: $height;
         width: 100%;
         border: $grey 1px solid;
         border-radius: 10px;
@@ -45,6 +49,18 @@ $height: 50px;
         font-size: 16px;
         padding: 15px;
         box-sizing: border-box;
+        transition: ease 0.2s;
+
+        &.ng-dirty.ng-invalid:not(form) {
+          border-color: #a94442;
+          border-width: $bwValid;
+          transition: 0.2s;
+        }
+        &.ng-dirty.ng-valid:not(form) {
+          border-width: $bwValid;
+          border-color: #42a948;
+          transition: 0.2s;
+        }
       }
     }
 
