@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-@import './global.scss';
+@import "./global.scss";
 
 * {
   font-family: "Roboto", sans-serif;
@@ -14,4 +14,30 @@ body {
   width: 100%;
   background-color: $white;
   overflow-x: hidden;
+
+  scrollbar-color: $grey $white;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar {
+    background-color: $white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus,
+  button:focus {
+    outline: none;
+  }
 }
