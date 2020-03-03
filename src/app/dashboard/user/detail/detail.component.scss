@@ -1,7 +1,222 @@
-div {
+@import "../../../../global.scss";
 
-  img {
+:host {
+  display: flex;
+  box-sizing: border-box;
+  align-self: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 5em 10em;
+  padding: 100px;
+  background-color: lighten($orange, 40%);
+
+  overflow-y: auto;
+  scrollbar-color: $grey $white;
+  scrollbar-width: thin;
+
+  .icons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+
+    > div {
+      display: flex;
+      width: 100%;
+    }
+
+    .back {
+      justify-content: left;
+    }
+
+    .page {
+      justify-content: space-between;
+
+      i {
+        font-size: 42px;
+      }
+    }
+
+    .user {
+      justify-content: right;
+    }
+  }
+
+  h2 {
+    width: 100%;
+    color: $orange;
+    text-align: center;
+  }
+
+  h3 {
+    color: $dark;
+  }
+
+  > div {
+    width: 500px;
+    box-sizing: border-box;
+  }
+
+  .imgContainer {
+    display: flex;
     height: 100px;
     width: 100px;
+    border-radius: 10px;
+    border: $black 2px solid;
+    box-sizing: border-box;
+    align-self: center;
+    background-color: $grey;
+
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+
+  .l {
+    div {
+      display: flex;
+
+      div {
+        $m: 10px;
+
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        max-width: 250px - $m * 2;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        align-items: center;
+
+        &:first-of-type {
+          margin-right: $m;
+        }
+        &:last-of-type {
+          margin-left: $m;
+        }
+      }
+    }
+  }
+
+  .h {
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      color: $grey;
+      font-style: italic;
+      font-size: small;
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit {
+    input {
+      height: 25px;
+      width: 100%;
+      border: $grey 1px solid;
+      border-radius: 10px;
+      color: $dark;
+      font-size: 16px;
+      padding: 15px;
+      box-sizing: border-box;
+      margin: 25px 0;
+    }
+
+    .imgWrapper {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      height: 200px;
+      width: 100%;
+    }
+
+    .w {
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div {
+          display: flex;
+          flex-direction: column;
+
+          h3 {
+            color: $dark;
+            margin-top: 0;
+          }
+        }
+      }
+    }
+
+    button {
+      @extend %button;
+      height: 25px;
+      width: 100%;
+      border: none;
+      font-size: 12pt;
+      font-weight: 900;
+    }
+  }
+
+  hr {
+    margin: 25px 0;
+    justify-self: center;
+  }
+
+  i {
+    font-size: 32px;
+    cursor: pointer;
+  }
+
+  .b {
+    display: flex;
+    justify-content: flex-end;
+    user-select: none;
+
+    i {
+      transition: 0.2s;
+    }
+
+    .open {
+      transition: 0.5s;
+      transform: rotate(180deg);
+    }
+  }
+
+  .data {
+    height: 100%;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar {
+    background-color: $white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
   }
 }

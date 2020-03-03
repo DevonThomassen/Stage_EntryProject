@@ -18,8 +18,11 @@
     </i>
   </div>
   <div class="user">
-    <i class="material-icons" (click)="enableEdit()" title="Edit user">
+    <i *ngIf="!this.edit" (click)="enableEdit()" class="material-icons" title="Edit user">
       edit
+    </i>
+    <i *ngIf="this.edit" (click)="enableEdit()" class="material-icons-outlined">
+      remove_red_eye
     </i>
     <i class="material-icons" (click)="deleteUser()" title="Remove user">
       remove
@@ -29,63 +32,94 @@
 
 <div [ngSwitch]="edit">
   <form *ngSwitchCase="true" [formGroup]="user" (ngSubmit)="editUser()" class="edit">
-    <button type="submit">Save</button>
-    <p>{{ this.user.value.identity.id }}</p>
-    <div formGroupName="personal">
-      <div>
+    <div formGroupName="personal" class="imgWrapper">
+      <div class="imgContainer">
         <img [src]="this.user.value.personal.avatar === '' 
-          ? 'assets/placeholder.png' 
-          : this.user.value.personal.avatar" />
-        <input type="text" formControlName="avatar">
+        ? 'assets/placeholder.png' 
+        : this.user.value.personal.avatar" />
       </div>
-      <div>
-        <label for="firstName">Firstname</label>
-        <input type="text" formControlName="firstName">
+      <div class="h">
+        <h3>ID: <span>{{ this.user.value.identity.id }}</span></h3>
       </div>
+      <input type="text" formControlName="avatar">
+    </div>
+    <div formGroupName="identity" class="w">
+      <h2>Identity</h2>
       <div>
-        <label for="lastName">LastName</label>
-        <input type="text" formControlName="lastName">
+        <div>
+          <h3>E-mail</h3>
+          <input type="text" formControlName="email">
+        </div>
+        <div>
+          <h3>Password</h3>
+          <input type="password" formControlName="password">
+        </div>
       </div>
     </div>
-    <div formGroupName="identity">
+    <div formGroupName="personal" class="w">
+      <h2>
+        Personal
+      </h2>
       <div>
-        <label for="email">E-mail</label>
-        <input type="text" formControlName="email">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" formControlName="password">
+        <div>
+          <h3>First name</h3>
+          <input type="text" formControlName="firstName">
+        </div>
+        <div>
+          <h3>Last name</h3>
+          <input type="text" formControlName="lastName">
+        </div>
       </div>
     </div>
+    <button type="submit">Save</button>
   </form>
 
   <div *ngSwitchDefault class="detail">
-    <div class="h">
-      <h3>ID:</h3>
-      <p>{{ this.user.value.identity.id }}</p>
+    <div class="imgContainer">
       <img
         [src]="this.user.value.personal.avatar === '' ? 'assets/placeholder.png' : this.user.value.personal.avatar" />
     </div>
-    <div>
-      <h3>E-mail: </h3>
-      <p>{{ this.user.value.identity.email }}</p>
+    <div class="h">
+      <h3>ID: <span>{{ this.user.value.identity.id }}</span></h3>
     </div>
-    <div>
-      <h3>Password: </h3>
-      <p>{{ this.user.value.identity.password }}</p>
+    <div class="identity l">
+      <h2>Identity</h2>
+      <div>
+        <div>
+          <h3>E-mail: </h3>
+          <p>{{ this.user.value.identity.email }}</p>
+        </div>
+        <div>
+          <h3>Password: </h3>
+          <p>{{ this.user.value.identity.password }}</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <h3>Firstname</h3>
-      <p>{{ this.user.value.personal.firstName }}</p>
-    </div>
-    <div>
-      <h3>Lastname: </h3>
-      <p>{{ this.user.value.personal.lastName }}</p>
+    <div class="personal l">
+      <h2>Personal</h2>
+      <div>
+        <div>
+          <h3>Firstname</h3>
+          <p>{{ this.user.value.personal.firstName }}</p>
+        </div>
+        <div>
+          <h3>Lastname: </h3>
+          <p>{{ this.user.value.personal.lastName }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="info">
+<div>
+  <hr />
+</div>
+
+<div class="b">
+  <i class="material-icons" [ngClass]="{open: open}" (click)="openBox()">arrow_drop_down</i>
+</div>
+
+<div *ngIf="open" class="data l">
   <div>
     <h3>User created at: </h3>
     <p>{{this.user.value.data.created_at | date: 'long'}}</p>

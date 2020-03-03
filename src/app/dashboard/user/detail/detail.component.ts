@@ -44,7 +44,8 @@ export class DetailComponent implements OnInit {
     })
   });
 
-  edit: boolean = false;
+  edit: boolean = true;
+  open: boolean = false;
 
   msgEdit: string;
   msgDelete: string;
@@ -146,6 +147,10 @@ export class DetailComponent implements OnInit {
         ])
       })
     });
+  }
+
+  openBox() {
+    this.open = !this.open;
   }
 
 }
