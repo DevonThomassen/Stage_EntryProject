@@ -9,19 +9,19 @@ $height: 50px;
   box-sizing: border-box;
   justify-content: center;
   flex-direction: column;
-
+  
   > div {
     width: 400px;
     align-self: center;
     text-align: left;
     box-sizing: border-box;
-
+    
     i {
       font-size: 32px;
       cursor: pointer;
     }
   }
-
+  
   form {
     display: flex;
     flex-direction: column;
