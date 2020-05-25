@@ -3,6 +3,7 @@
 :host {
   height: 100%;
   max-width: 1500px;
+  width: 100%;
   margin: 0 auto;
 
   .col {
@@ -62,7 +63,7 @@
     place-content: center;
 
     div {
-      margin: 1em;
+      margin:20px;
       padding: 1em;
       background-color: lighten($orange, 40%);
       border-radius: 10px;

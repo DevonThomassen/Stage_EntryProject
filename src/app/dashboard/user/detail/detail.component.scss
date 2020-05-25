@@ -18,6 +18,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 25px;
+    user-select: none;
 
     > div {
       display: flex;
@@ -185,7 +186,7 @@
     user-select: none;
 
     i {
-      transition: 0.2s;
+      transition: 0.5s;
     }
 
     .open {

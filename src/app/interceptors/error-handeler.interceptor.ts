@@ -32,8 +32,8 @@ export class ErrorHandelerInterceptor implements HttpInterceptor {
           status: error.status
         };
         if (error.status === 401) {
-          throwError(error);
           this.auth.logOut();
+          return throwError(error);
         }
         return throwError(error);
       })

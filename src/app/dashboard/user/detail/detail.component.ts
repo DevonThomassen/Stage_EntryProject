@@ -30,6 +30,7 @@ export class DetailComponent implements OnInit {
       lastName: new FormControl('', [
         Validators.required
       ]),
+      // TODO: on blur
       avatar: new FormControl('', [
         Validators.required
       ])
@@ -44,7 +45,7 @@ export class DetailComponent implements OnInit {
     })
   });
 
-  edit: boolean = true;
+  edit: boolean = false;
   open: boolean = false;
 
   msgEdit: string;
@@ -102,7 +103,9 @@ export class DetailComponent implements OnInit {
 
   confirmedEdit() {
     this.toggleEdit();
-    this.userService.EditUser(this.user.value).subscribe();
+    const v = this.user.value;
+    const obj: User = Object.assign(v.identity, v.personal, v.data);
+    this.userService.EditUser(obj).subscribe();
     this.router.navigate(['/dashboard']);
   }
 

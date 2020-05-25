@@ -23,10 +23,6 @@ export class UserComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('Page') && sessionStorage.getItem('Limit')) {
-      this.offset = parseInt(sessionStorage.getItem('Page'), 10) * parseInt(sessionStorage.getItem('Limit'), 10) - 1;
-      this.limit = parseInt(sessionStorage.getItem('Limit'), 10)
-    }
     this.getUsers();
   }
 
@@ -41,8 +37,6 @@ export class UserComponent implements OnInit {
         this.totalUsers = res.total;
         this.page = this.offset / this.limit + 1;
         this.totalPages = Math.ceil(this.totalUsers / this.limit);
-        sessionStorage.setItem('Page', this.page.toString());
-        sessionStorage.setItem('Limit', this.limit.toString());
         console.log(['res data', res.data]);
       },
       err => {

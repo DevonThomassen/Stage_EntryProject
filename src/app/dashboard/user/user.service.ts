@@ -32,6 +32,7 @@ export class UserService {
   }
 
   EditUser(user: UpdateUser) {
+    console.log(user.id)
     return this.http.put(`/users/${user.id}`, user);
   }
 

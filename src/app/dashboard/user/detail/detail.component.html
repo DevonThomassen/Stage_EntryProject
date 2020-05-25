@@ -34,9 +34,9 @@
   <form *ngSwitchCase="true" [formGroup]="user" (ngSubmit)="editUser()" class="edit">
     <div formGroupName="personal" class="imgWrapper">
       <div class="imgContainer">
-        <img [src]="this.user.value.personal.avatar === '' 
+        <!-- <img [src]="this.user.value.personal.avatar === '' 
         ? 'assets/placeholder.png' 
-        : this.user.value.personal.avatar" />
+        : this.user.value.personal.avatar" /> -->
       </div>
       <div class="h">
         <h3>ID: <span>{{ this.user.value.identity.id }}</span></h3>

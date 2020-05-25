@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
     }
     console.log('Ingelogd: Yep');
     const req = request.clone({
-      headers: request.headers.set('Authorization', `Basic ${token}`)
+      headers: request.headers.set('Authorization', `Bearer ${token}`)
     });
 
     return next.handle(req);

@@ -19,7 +19,7 @@
       <i class="material-icons">
         list
       </i>
-      <select [(ngModel)]="limit" (ngModelChange)="getUsers()">
+      <select [(ngModel)]="limit" (ngModelChange)="getUsers()" id="select">
         <option>5</option>
         <option>10</option>
         <option>15</option>
@@ -44,7 +44,7 @@
 </div>
 
 <div class="grid">
-  <div *ngFor="let user of users | async" (click)="onSelect(user)">
+  <div *ngFor="let user of users | async" (click)="onSelect(user)" class="user">
     <p>{{user.firstName}} {{user.lastName}}</p>
     <img [src]="user.avatar === '' ? 'assets/placeholder.png' : user.avatar" />
   </div>
